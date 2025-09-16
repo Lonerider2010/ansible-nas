@@ -10,7 +10,10 @@ Creates portlists for ansible-nas
 - builds an md file `portslist_apps.md` sorted by applications
 - builds an md file `portslist_ports.md` sorted by ports
 
-[regex101](https://regex101.com/r/rB7yPs/1)
+### Remarks
+- the regex used in make_port_list was created using
+    [regex101](https://regex101.com/r/rB7yPs/1)
+- for handling the entry of "ispyagentdvr", a trick was used ;-)
 
 ### Used Libraries
 
