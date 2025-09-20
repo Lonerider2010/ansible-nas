@@ -58,11 +58,11 @@ download_root: "{{ nfs_shares_root }}/Download"
 # Ägyptologie stuff
 egyptology_root: "{{ nfs_shares_root}}/Ägyptologie"
 
-# EDV stuff
-edv_root: "{{ nfs_shares_root}}/EDV"
-
 # Inventory stuff
 inventory_root: "{{ nfs_shares_root}}/Inventar"
+
+# IT stuff
+it_root: "{{ nfs_shares_root}}/IT"
 
 # Media stuff
 media_root: "{{ nfs_shares_root}}/Media"
