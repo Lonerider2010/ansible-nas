@@ -6,6 +6,16 @@
   register: result
   until: result is succeeded
 
+- name: Copy "ext-managed"
+  ansible.builtin.copy:
+    src: "{{ ext_managed }}"
+    dest: "{{ ext_managed }}_bak"
+
+- name: Remove "ext-managed"
+  ansible.builtin.file:
+    path: "{{ ext_managed }}"
+    state: "absent"
+
 - name: Remove docker-py python module
   ansible.builtin.pip:
     name: docker-py
