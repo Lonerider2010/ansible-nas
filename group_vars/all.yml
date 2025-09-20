@@ -140,14 +140,6 @@ nfs_shares:
     browseable: yes
     path: "{{ egyptology_root }}"
 
-  - name: EDV
-    comment: "EDV stuff"
-    guest_ok: yes
-    public: yes
-    writable: yes
-    browseable: yes
-    path: "{{ edv_root }}"
-
   - name: Inventar
     comment: "Inventar stuff"
     guest_ok: yes
@@ -155,6 +147,14 @@ nfs_shares:
     writable: yes
     browseable: yes
     path: "{{ inventory_root }}"
+
+  - name: IT
+    comment: "IT stuff"
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ it_root }}"
 
   - name: Media
     comment: "Media stuff"
@@ -236,8 +236,8 @@ nfs_exports:
   - "{{ download_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ documents_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ egyptology_root }} *(rw,async,no_root_squash,no_subtree_check)"
-  - "{{ edv_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ inventory_root }} *(rw,async,no_root_squash,no_subtree_check)"
+  - "{{ it_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ media_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ movies_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ music_root }} *(rw,async,no_root_squash,no_subtree_check)"
