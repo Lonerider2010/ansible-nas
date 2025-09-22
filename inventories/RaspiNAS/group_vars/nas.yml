@@ -17,9 +17,9 @@ ansible_nas_timezone: Europe/Berlin
 homepage_enabled: true
 
 ## Media Serving
-calibre_enabled: false
-calibre_cwa_enabled: false
-calibreweb_enabled: false
+calibre_enabled: true
+calibre_cwa_enabled: true
+calibreweb_enabled: true
 
 ## System Tools
 portainer_enabled: true
