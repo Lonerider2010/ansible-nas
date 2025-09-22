@@ -15,3 +15,5 @@ docker_storage_driver: overlay2
 docker_daemon_json:
   data-root: "{{ docker_image_directory }}"
   storage-driver: "{{ docker_storage_driver }}"
+
+ext_managed: "/usr/lib/python3.11/EXTERNALLY-MANAGED"

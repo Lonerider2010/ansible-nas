@@ -15,3 +15,7 @@ ansible_nas_timezone: Europe/Berlin
 
 ## Enable some applications
 homepage_enabled: true
+
+## Media Serving
+calibre_enabled: true
+calibre_cwa_enabled: true
