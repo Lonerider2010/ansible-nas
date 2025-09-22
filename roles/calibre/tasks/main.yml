@@ -27,7 +27,7 @@
         ports:
           - "{{ calibre_port }}:8080"
           - "{{ calibre_webserver_port }}:8081"
-        security_opts: "{{ calibre_security_opts }}"
+        # security_opts: "{{ calibre_security_opts }}"
         restart_policy: unless-stopped
         memory: "{{ calibre_memory }}"
         labels:
