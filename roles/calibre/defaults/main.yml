@@ -19,7 +19,7 @@ calibre_hostname: "calibre"
 # env
 calibre_password: ""
 calibre_cli_args: ""
-# calibre_security_opts: "seccomp=unconfined" # For why this is here, see https://github.com/linuxserver/docker-calibre/issues/102
+calibre_security_opts: "seccomp=unconfined" # For why this is here, see https://github.com/linuxserver/docker-calibre/issues/102
 
 # specs
 calibre_memory: 1g
@@ -27,4 +27,4 @@ calibre_memory: 1g
 # docker
 calibre_container_name: calibre
 calibre_image_name: "linuxserver/calibre"
-calibre_image_tag: "v8.6.0-ls344"
+calibre_image_tag: "v8.5.0-ls342"
