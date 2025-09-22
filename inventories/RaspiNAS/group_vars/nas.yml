@@ -19,3 +19,6 @@ homepage_enabled: true
 ## Media Serving
 calibre_enabled: true
 calibre_cwa_enabled: true
+
+## System Tools
+portainer_enabled: true
