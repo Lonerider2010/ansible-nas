@@ -1,0 +1,21 @@
+---
+mediathekview_enabled: true
+mediathekview_available_externally: true
+
+# uid / gid
+mediathekview_user_id: "0"
+mediathekview_group_id: "0"
+
+# directories
+mediathekview_data_directory: "{{ docker_home }}/mediathekview"
+mediathekview_tv_root: "{{ tv_root }}"
+
+# network
+mediathekview_port: "5800"
+mediathekview_hostname: "mediathekview"
+
+# specs
+mediathekview_memory: 1g
+
+# docker
+mediathekview_container_name: mediathekview
