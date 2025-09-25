@@ -1,7 +1,5 @@
 ---
 
-# see https://deployn.de/blog/setup-calibre/#cwa-calibre-web-automated--der-moderne-fork
-
 - name: Start Mediathekview
   block:
     - name: Create Mediathekview Directories
