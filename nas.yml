@@ -233,6 +233,10 @@
       tags:
         - mealie
 
+    - role: mediathekview
+      tags:
+        - mediathekview
+
     - role: minecraft-bedrock-server
       tags:
         - minecraft-bedrock-server
