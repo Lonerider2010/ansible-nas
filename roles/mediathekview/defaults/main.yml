@@ -1,6 +1,6 @@
 ---
-mediathekview_enabled: true
-mediathekview_available_externally: true
+mediathekview_enabled: false
+mediathekview_available_externally: false
 
 # uid / gid
 mediathekview_user_id: "0"
