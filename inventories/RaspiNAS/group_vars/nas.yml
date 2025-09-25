@@ -20,6 +20,7 @@ homepage_enabled: true
 calibre_enabled: true
 calibre_cwa_enabled: true
 calibreweb_enabled: true
+mediathekview_enabled: true
 
 ## System Tools
 portainer_enabled: true
