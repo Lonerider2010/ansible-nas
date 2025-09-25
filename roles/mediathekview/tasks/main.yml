@@ -24,7 +24,7 @@
           PUID: "{{ mediathekview_user_id }}"
           PGID: "{{ mediathekview_group_id }}"
         ports:
-          - "{{ mediathekview_port }}:8084"
+          - "{{ mediathekview_port }}:8085"
         restart_policy: unless-stopped
         memory: "{{ mediathekview_memory }}"
         labels:
