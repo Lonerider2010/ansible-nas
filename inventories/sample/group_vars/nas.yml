@@ -15,3 +15,6 @@ ansible_nas_timezone: Etc/UTC
 
 ## Enable some applications
 homepage_enabled: true
+
+## Media Serving
+jdownloader2_enabled: true
