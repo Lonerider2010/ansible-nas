@@ -1,40 +1,40 @@
 ---
-- name: Start jdownloader
+- name: Start jdownloader2
   block:
-    - name: Create jdownloader Directories
+    - name: Create jdownloader2 Directories
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
         mode: 0755
       with_items:
-        - "{{ jdownloader_data_directory }}/data"
+        - "{{ jdownloader2_data_directory }}/data"
 
-    - name: jdownloader Docker Container
+    - name: jdownloader2 Docker Container
       community.docker.docker_container:
-        name: "{{ jdownloader_container_name }}"
-        image: jlesage/jdownloader
+        name: "{{ jdownloader2_container_name }}"
+        image: jlesage/jdownloader-2
         # pull: missing
         state: started
         volumes:
-          - "{{ jdownloader_data_directory }}/data:/config:rw"
-          - "{{ jdownloader_download_directory }}:/output:rw"
+          - "{{ jdownloader2_data_directory }}/data:/config:rw"
+          - "{{ jdownloader2_download_directory }}:/output:rw"
         env:
           TZ: "{{ ansible_nas_timezone }}"
-          PUID: "{{ jdownloader_user_id }}"
-          PGID: "{{ jdownloader_group_id }}"
-          PASSWORD: "{{ jdownloader_password }}"
-          CLI_ARGS: "{{ jdownloader_cli_args }}"
+          PUID: "{{ jdownloader2_user_id }}"
+          PGID: "{{ jdownloader2_group_id }}"
+          PASSWORD: "{{ jdownloader2_password }}"
+          CLI_ARGS: "{{ jdownloader2_cli_args }}"
         ports:
-          - "{{ jdownloader_port }}:5800"
-        security_opts: "{{ jdownloader_security_opts }}"
+          - "{{ jdownloader2_port }}:5800"
+        security_opts: "{{ jdownloader2_security_opts }}"
         restart_policy: unless-stopped
-        memory: "{{ jdownloader_memory }}"
-  when: jdownloader_enabled is true
+        memory: "{{ jdownloader2_memory }}"
+  when: jdownloader2_enabled is true
 
-- name: Stop jdownloader
+- name: Stop jdownloader2
   block:
-    - name: Stop jdownloader
+    - name: Stop jdownloader2
       community.docker.docker_container:
-        name: "{{ jdownloader_container_name }}"
+        name: "{{ jdownloader2_container_name }}"
         state: absent
-  when: jdownloader_enabled is false
+  when: jdownloader2_enabled is false
