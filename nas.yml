@@ -205,6 +205,10 @@
       tags:
         - jackett
 
+    - role: jdownloader2
+      tags:
+        - jdownloader2
+
     - role: jellyfin
       tags:
         - jellyfin
