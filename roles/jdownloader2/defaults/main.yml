@@ -1,5 +1,5 @@
 ---
-jdownloader2_enabled: false
+jdownloader2_enabled: true
 jdownloader2_available_externally: "false"
 
 # uid / gid
