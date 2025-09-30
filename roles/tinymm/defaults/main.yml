@@ -1,0 +1,23 @@
+---
+tinymm_enabled: false
+tinymm_available_externally: false
+
+# uid / gid
+tinymm_user_id: "0"
+tinymm_group_id: "0"
+
+# directories
+tinymm_data_directory: "{{ docker_home }}/tinymm"
+tinymm_movies_root: "{{ movies_root }}"
+tinymm_tv_root: "{{ tv_root }}"
+
+# network
+tinymm_port1: "4000"
+tinymm_port2: "5900"
+tinymm_hostname: "tinymm"
+
+# specs
+tinymm_memory: 1g
+
+# docker
+tinymm_container_name: tinymm
