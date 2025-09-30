@@ -1,0 +1,41 @@
+---
+
+# see https://deployn.de/blog/setup-calibre/#cwa-calibre-web-automated--der-moderne-fork
+
+- name: Start tinyMediaManager
+  block:
+    - name: Create tinyMediaManager Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ tinymm_data_directory }}/config"
+        - "{{ tinymm_data_directory }}/data"
+
+    - name: tinyMediaManager Docker Container
+      community.docker.docker_container:
+        name: "{{ tinymm_container_name }}"
+        image: tinymediamanager/tinymediamanager:latest
+        pull: true
+        volumes:
+          - "{{ tinymm_data_directory }}/config:/config"
+          - "{{ tinymm_movies_root }}:/movies"
+          - "{{ tinymm_tv_root }}:/tv"
+        env:
+          TZ: "{{ ansible_nas_timezone }}"
+          PUID: "{{ tinymm_user_id }}"
+          PGID: "{{ tinymm_group_id }}"
+        ports:
+          - "{{ tinymm_port1 }}:4000"
+          - "{{ tinymm_port2 }}:5900"
+        restart_policy: unless-stopped
+        memory: "{{ tinymm_memory }}"
+  when: tinymm_enabled is true
+
+- name: Stop tinyMediaManager
+  block:
+    - name: Stop tinyMediaManager
+      community.docker.docker_container:
+        name: "{{ tinymm_container_name }}"
+        state: absent
+  when: tinymm_enabled is false
