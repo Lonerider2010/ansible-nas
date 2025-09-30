@@ -1,5 +1,5 @@
 ---
-tinymm_enabled: false
+tinymm_enabled: true
 tinymm_available_externally: false
 
 # uid / gid
