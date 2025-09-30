@@ -421,6 +421,10 @@
       tags:
         - timemachine
 
+    - role: tinymm
+      tags:
+        - tinymm
+
     - role: traefik
       tags:
         - traefik
