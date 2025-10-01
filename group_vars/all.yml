@@ -58,12 +58,21 @@ download_root: "{{ nfs_shares_root }}/Download"
 # Ägyptologie stuff
 egyptology_root: "{{ nfs_shares_root}}/Ägyptologie"
 
+<<<<<<< HEAD
 # Inventory stuff
 inventory_root: "{{ nfs_shares_root}}/Inventar"
 
 # IT stuff
 it_root: "{{ nfs_shares_root}}/IT"
 
+=======
+# IT stuff
+it_root: "{{ nfs_shares_root}}/IT"
+
+# Inventory stuff
+inventory_root: "{{ nfs_shares_root}}/Inventar"
+
+>>>>>>> tinymm-test
 # Media stuff
 media_root: "{{ nfs_shares_root}}/Media"
 
@@ -140,6 +149,7 @@ nfs_shares:
     browseable: yes
     path: "{{ egyptology_root }}"
 
+<<<<<<< HEAD
   - name: Inventar
     comment: "Inventar stuff"
     guest_ok: yes
@@ -148,6 +158,8 @@ nfs_shares:
     browseable: yes
     path: "{{ inventory_root }}"
 
+=======
+>>>>>>> tinymm-test
   - name: IT
     comment: "IT stuff"
     guest_ok: yes
@@ -156,6 +168,17 @@ nfs_shares:
     browseable: yes
     path: "{{ it_root }}"
 
+<<<<<<< HEAD
+=======
+  - name: Inventar
+    comment: "Inventar stuff"
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ inventory_root }}"
+
+>>>>>>> tinymm-test
   - name: Media
     comment: "Media stuff"
     guest_ok: yes
@@ -236,8 +259,13 @@ nfs_exports:
   - "{{ download_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ documents_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ egyptology_root }} *(rw,async,no_root_squash,no_subtree_check)"
+<<<<<<< HEAD
   - "{{ inventory_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ it_root }} *(rw,async,no_root_squash,no_subtree_check)"
+=======
+  - "{{ it_root }} *(rw,async,no_root_squash,no_subtree_check)"
+  - "{{ inventory_root }} *(rw,async,no_root_squash,no_subtree_check)"
+>>>>>>> tinymm-test
   - "{{ media_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ movies_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ music_root }} *(rw,async,no_root_squash,no_subtree_check)"

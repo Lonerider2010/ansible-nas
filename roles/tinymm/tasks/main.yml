@@ -19,6 +19,7 @@
         pull: true
         volumes:
           - "{{ tinymm_data_directory }}/config:/config"
+          - "{{ tinymm_media_root}}:/media"
           - "{{ tinymm_movies_root }}:/movies"
           - "{{ tinymm_tv_root }}:/tv"
         env:

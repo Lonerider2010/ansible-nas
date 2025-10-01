@@ -10,6 +10,7 @@ tinymm_group_id: "0"
 tinymm_data_directory: "{{ docker_home }}/tinymm"
 tinymm_movies_root: "{{ movies_root }}"
 tinymm_tv_root: "{{ tv_root }}"
+tinymm_media_root: "{{ media_root }}"
 
 # network
 tinymm_port1: "4000"
