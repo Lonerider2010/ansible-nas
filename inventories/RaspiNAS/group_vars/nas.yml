@@ -27,5 +27,10 @@ calibreweb_enabled: true
 jdownloader2_enabled: true
 mediathekview_enabled: false
 
+## Home Automation
+homeassistant_enabled: true
+homeassistant_available_externally: true
+mosquitto_enabled: true
+
 ## System Tools
 portainer_enabled: true
