@@ -121,6 +121,10 @@
       tags:
         - drone_ci
 
+    - role: dupeguru
+      tags:
+        - dupeguru
+
     - role: duplicacy
       tags:
         - duplicacy

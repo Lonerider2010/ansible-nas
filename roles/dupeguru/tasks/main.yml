@@ -1,0 +1,37 @@
+---
+- name: Start dupeGuru
+  block:
+    - name: Create dupeGuru Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ dupeguru_data_directory }}"
+
+    - name: dupeGuru Docker Container
+      community.docker.docker_container:
+        name: "{{ dupeguru_container_name }}"
+        image: jlesage/dupeguru
+        pull: true
+        volumes:
+          - "{{ dupeguru_data_directory }}:/dupeguru:rw"
+        ports:
+          - "{{ dupeguru_port }}:5800"
+        restart_policy: unless-stopped
+        memory: "{{ dupeguru_memory }}"
+        labels:
+          traefik.enable: "{{ dupeguru_available_externally | string }}"
+          traefik.http.routers.dupeguru.rule: "Host(`{{ dupeguru_hostname }}.{{ ansible_nas_domain }}`)"
+          traefik.http.routers.dupeguru.tls.certresolver: "letsencrypt"
+          traefik.http.routers.dupeguru.tls.domains[0].main: "{{ ansible_nas_domain }}"
+          traefik.http.routers.dupeguru.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
+          traefik.http.services.dupeguru.loadbalancer.server.port: "8000"
+  when: dupeguru_enabled is true
+
+- name: Stop dupeGuru
+  block:
+    - name: Stop dupeGuru
+      community.docker.docker_container:
+        name: "{{ dupeguru_container_name }}"
+        state: absent
+  when: dupeguru_enabled is false

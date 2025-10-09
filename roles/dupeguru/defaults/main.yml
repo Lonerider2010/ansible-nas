@@ -1,0 +1,15 @@
+---
+dupeguru_enabled: false
+
+# directories
+dupeguru_data_directory: "{{ docker_home }}/dupeguru"
+
+# network
+dupeguru_port: "5800"
+dupeguru_hostname: "dupeguru"
+
+# specs
+dupeguru_memory: 1g
+
+# docker
+dupeguru_container_name: dupeguru
