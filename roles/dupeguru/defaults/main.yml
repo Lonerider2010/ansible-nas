@@ -1,11 +1,16 @@
 ---
 dupeguru_enabled: false
+dupeguru_available_externally: false
 
 # directories
-dupeguru_data_directory: "{{ docker_home }}/dupeguru"
+dupeguru_config_directory: "{{ docker_home }}/dupeguru"
+dupeguru_storage_directory: "/mnt/Volume1/local/"
+dupeguru_trash_directory: "/mnt/Volume1/local/TRASH"
+
 
 # network
-dupeguru_port: "5800"
+dupeguru_web_port: "5801"
+dupeguru_vnc_port: "5901"
 dupeguru_hostname: "dupeguru"
 
 # specs

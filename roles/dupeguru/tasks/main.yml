@@ -14,18 +14,20 @@
         image: jlesage/dupeguru
         pull: true
         volumes:
-          - "{{ dupeguru_data_directory }}:/dupeguru:rw"
+          - "{{ dupeguru_config_directory }}:/config:rw"
+          - "{{ dupeguru_storage_directory }}:/storage:rw"
+          - "{{ dupeguru_trash_directory }}:/trash:rw"
         ports:
-          - "{{ dupeguru_port }}:5800"
+          - "{{ dupeguru_web_port }}:5801"
+        env:
+          TZ: "Europe/Berlin"
+          WEB_FILE_MANAGER: "1"
+          DARK_MODE: "1"
+          LANG: "de_DE:UTF-8"
+          WEB_LISTENING_PORT: "5801"
+          VNC_LISTENING_PORT: "5901"
         restart_policy: unless-stopped
         memory: "{{ dupeguru_memory }}"
-        labels:
-          traefik.enable: "{{ dupeguru_available_externally | string }}"
-          traefik.http.routers.dupeguru.rule: "Host(`{{ dupeguru_hostname }}.{{ ansible_nas_domain }}`)"
-          traefik.http.routers.dupeguru.tls.certresolver: "letsencrypt"
-          traefik.http.routers.dupeguru.tls.domains[0].main: "{{ ansible_nas_domain }}"
-          traefik.http.routers.dupeguru.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
-          traefik.http.services.dupeguru.loadbalancer.server.port: "8000"
   when: dupeguru_enabled is true
 
 - name: Stop dupeGuru

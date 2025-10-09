@@ -56,24 +56,14 @@ documents_root: "{{ nfs_shares_root }}/Documents"
 download_root: "{{ nfs_shares_root }}/Download"
 
 # Ägyptologie stuff
-<<<<<<< HEAD
 egyptology_root: "{{ nfs_shares_root }}/Ägyptologie"
 
 # Inventory stuff
 inventory_root: "{{ nfs_shares_root }}/Inventar"
-=======
-egyptology_root: "{{ nfs_shares_root}}/Ägyptologie"
->>>>>>> dupeguru-test
 
 # IT stuff
 it_root: "{{ nfs_shares_root}}/IT"
 
-<<<<<<< HEAD
-=======
-# Inventory stuff
-inventory_root: "{{ nfs_shares_root}}/Inventar"
-
->>>>>>> dupeguru-test
 # Media stuff
 media_root: "{{ nfs_shares_root}}/Media"
 
@@ -246,13 +236,8 @@ nfs_exports:
   - "{{ download_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ documents_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ egyptology_root }} *(rw,async,no_root_squash,no_subtree_check)"
-<<<<<<< HEAD
   - "{{ inventory_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ it_root }} *(rw,async,no_root_squash,no_subtree_check)"
-=======
-  - "{{ it_root }} *(rw,async,no_root_squash,no_subtree_check)"
-  - "{{ inventory_root }} *(rw,async,no_root_squash,no_subtree_check)"
->>>>>>> dupeguru-test
   - "{{ media_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ movies_root }} *(rw,async,no_root_squash,no_subtree_check)"
   - "{{ music_root }} *(rw,async,no_root_squash,no_subtree_check)"

@@ -34,3 +34,4 @@ mosquitto_enabled: true
 
 ## System Tools
 portainer_enabled: true
+dupeguru_enabled: true
