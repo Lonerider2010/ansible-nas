@@ -14,7 +14,6 @@
         dest: "{{ homepage_data_directory }}/{{ item }}"
       with_items:
         - bookmarks.yaml
-        - docker.yaml
         - settings.yaml
         - services.yaml
         - widgets.yaml
