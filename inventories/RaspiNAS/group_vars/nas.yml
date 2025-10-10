@@ -17,8 +17,8 @@ ansible_nas_timezone: Europe/Berlin
 homepage_enabled: true
 
 ## Content Management
-dokuwiki_enabled: yes
-freshrss_enabled: yes
+dokuwiki_enabled: true
+freshrss_enabled: true
 
 ## Media Serving
 calibre_enabled: true
