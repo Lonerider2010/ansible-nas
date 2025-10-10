@@ -27,6 +27,7 @@
         pull: true
         volumes:
           - "{{ homepage_data_directory }}:/app/config"
+          - "{{ homepage_icons_directory }}:/app/public/icons"
           - "/var/run/docker.sock:/var/run/docker.sock"
         env:
           TZ: "{{ ansible_nas_timezone }}"

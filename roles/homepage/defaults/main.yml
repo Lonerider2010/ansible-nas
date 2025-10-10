@@ -5,6 +5,7 @@ homepage_available_externally: false
 
 # directories
 homepage_data_directory: "{{ docker_home }}/homepage"
+homepage_icons_directory: "{{ docker_home }}/homepage/icons"
 
 # network
 homepage_hostname: "homepage"
@@ -19,8 +20,12 @@ homepage_image_tag: "latest"
 homepage_memory: "1g"
 
 # settings
-homepage_title: Ansible-NAS Homepage
-homepage_locale: en-GB
+homepage_title: RaspiNAS Homepage
+homepage_locale: de-DE
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
 
 # Homepage config files - the variables below are formatted to Homepage YAML config files
 homepage_settings_yaml:
@@ -29,49 +34,198 @@ homepage_settings_yaml:
   showStats: true
 
 homepage_services_yaml:
+  - Content Management:
+    -   DokuWiki:
+            description: Open Source Wiki Software
+            href: http://192.168.2.181:8085
+            icon: dokuwiki
+    -   FreshRSS:
+            description: RSS feed aggregator
+            href: http://192.168.2.181:8089
+            icon: freshrss
+    -   Stirling PDF:
+            description: PDF Handling
+            href: http://192.168.2.181:32768
+            icon: stirling-pdf
+    -   Swagger UI:
+            description: API for Stirling PDF
+            href: http://192.168.2.181:32768/swagger-ui/index.html
+            icon: swagger
+    -   dupeGuru:
+            description: Duplicate files manager
+            href: http://192.168.2.181:5801/
+            icon: /icons/dupeguru.png
+  - Media Serving:
+    -   Calibre:
+            description: Ebook Management
+            href: http://192.168.2.181:8093/
+            icon: calibre
+    -   Calibre-server:
+            description: Ebook Management (web interface)
+            href: http://192.168.2.181:8094/
+            icon: calibre
+    -   Calibre-web:
+            description: Ebook Management
+            href: http://192.168.2.181:8084/
+            icon: calibre-web
+    -   JDownloader2:
+            description: Download Management
+            href: http://192.168.2.181:5800/
+            icon: jdownloader
+    -   tinyMediaManager:
+            description: Media Meta Management
+            href: http://192.168.2.181:4000/
+            icon: /icons/tinymm.png
   - Networking:
-      - Router:
-          icon: asus-router
-          href: http://192.168.1.1/
-          description: Asus Router
+    -   Router:
+            description: Speedport Smart 4
+            href: https://192.168.2.1/html/login/index.html
+            icon: telekom
+    -   Printer:
+            description: HP OfficeJet Pro 8024e
+            href: http://192.168.2.11/
+            icon: hp
+    -   Wireshark:
+            description: Network monitoring tool
+            href: http://192.168.2.181:3000/
+            icon: wireshark
+  - Smart Home/System Tools:
+    -   HomeAssistant:
+            description: Smart Home Control
+            href: http://192.168.2.181:8123/
+            icon: home-assistant
+    -   Portainer:
+            description: Docker container management
+            href: http://192.168.2.181:9000/
+            icon: portainer
+    -   Pyrobox:
+            description: Web-based file manager
+            href: http://192.168.2.181:6969/
+            icon: /icons/pyrobox.png
+    -  Glances:
+            description: Cross-platform system monitoring tool
+            href: http://192.168.2.181:61208/
+            icon: glances
 
 homepage_widgets_yaml:
-  - search:
-      provider: google # google, duckduckgo, bing, baidu, brave or custom
-      focus: true # Optional, will set focus to the search bar on page load
-      target: _blank # One of _self, _blank, _parent or _top
-  - greeting:
-      text_size: xl
-      text: Ansible-NAS
-  - resources:
-      cpu: true
-      memory: true
-      cputemp: true
-      uptime: true
-      units: metric # only used by cpu temp
-      refresh: 60000 # optional, in ms
+-   search:
+        provider: custom
+        url: https://www.startpage.com/do/dsearch?cat=web&language=deutsch&query=
+        target: _blank
+        suggestionUrl: https://www.startpage.com/osuggestions?q= # Optional
+        showSearchSuggestions: true # Optional
+-   greeting:
+        text: RaspiNAS
+        text_size: xl
+-   resources:
+        cpu: true
+        cputemp: true
+        memory: true
+        refresh: 60000
+        units: metric
+        uptime: true
+-   datetime:
+        text_size: md
+        locale: de
+        format:
+            dateStyle: short
+-   datetime:
+        text_size: md
+        locale: de
+        format:
+            timeStyle: short
 
 homepage_bookmarks_yaml:
-  - Developer:
-      - "Ansible-NAS":
-          - abbr: AN
-            href: https://ansible-nas.io/
-      - Github:
-          - abbr: GH
+-   Local:
+    -   Schneiders Web:
+        -   abbr: SW
+            href: https://192.168.2.181:8443/Web/index1.html
+            icon: /icons/globe.png
+    -   MCUList:
+        -   abbr: ML
+            href: https://192.168.2.181:8443/Media/MCU/mcu-list.html
+            icon: /icons/captain-marvel-seeklogo.png
+-   Open Knowledge:
+    -   Wikipedia:
+        -   abbr: WP
+            href: https://de.wikipedia.org/wiki/
+            icon: wikipedia
+    -   OpenStreetMap:
+        -   abbr: OSM
+            href: https://www.openstreetmap.org/#map=17/49.461980/11.099377
+            icon: openstreetmap
+    -   OpenWeather:
+        -   abbr: OWM
+            href: https://openweathermap.org/find?q=N%C3%BCrnberg
+            icon: /icons/openweathermap.png
+    -   OpenFoodFacts:
+        -   abbr: OFF
+            href: https://de.openfoodfacts.org/
+            icon: /icons/openfoodfacts.png
+    -   Open Access Network:
+        -   abbr: OAN
+            href: https://open-access.network/startseite
+            icon: /icons/openaccessnetwork.png
+    -   Open-Science-Initiativen:
+        -   abbr: NOSI
+            href: https://osf.io/tbkzh/
+            icon: /icons/osfhome.png
+    -   Open Research Europe:
+        -   abbr: ORE
+            href: https://open-research-europe.ec.europa.eu/
+            icon: /icons/openresearcheurope.png
+-   DevOps:
+    -   Gitlab:
+        -   abbr: GL
+            href: https://gitlab.com/
+            icon: gitlab
+    -   Github:
+        -   abbr: GH
             href: https://github.com/
-            icon: github
-      - "Hacker News":
-          - abbr: HN
-            href: https://news.ycombinator.com/
-  - Social:
-      - Reddit:
-          - abbr: RE
-            href: https://reddit.com/
-            icon: reddit
-  - Entertainment:
-      - YouTube:
-          - abbr: YT
-            href: https://youtube.com/
-            icon: youtube
-
+            icon: github-light
+    -   DockerHub:
+        -   abbr: DH
+            href: https://hub.docker.com/
+            icon: docker
+    -   Raspberry Pi:
+        -   abbr: PI
+            href: https://www.raspberrypi.com/
+            icon: raspberry-pi
+    -   Ansible-NAS:
+        -   abbr: AN
+            href: https://ansible-nas.io/
+            icon: /icons/ansiblenas.png
+    -   Homepage:
+        -   abbr: HO
+            href: https://gethomepage.dev/
+            icon: homepage
+    -   Stack Overflow:
+        -   abbr: SO
+            href: https://stackoverflow.com/
+            icon: mdi-stack-overflow
+    -   Stirling PDF - Processing API:
+        -   abbr: SP
+            href: https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/latest
+            icon: /icons/scalar.png
+    -   PINN OS:
+        -   abbr: PO
+            href: https://github.com/procount/pinn
+            icon: /icons/pinn-os-2.png
+-   Entertainment:
+    -   MediathekViewWeb:
+        -   abbr: MV
+            href: https://mediathekviewweb.de/
+            icon: mediathekview
+    -   MyJDownloader:
+        -   abbr: MJD
+            href: https://my.jdownloader.org/index.html?deviceId=cee387b06b9b85a53ba4562bf660240e#webinterface:downloads
+            icon: jdownloader
+    -   Invidious:
+        -   abbr: IV
+            href: https://inv.nadeko.net/
+            icon: invidious
+    -   Welche Bachkantate?:
+        -   abbr: WB
+            href: https://whichbachcantata.be/
+            icon: /icons/bach.png
 homepage_allowed_hosts: "*"
