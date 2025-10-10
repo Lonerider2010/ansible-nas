@@ -27,6 +27,10 @@ calibreweb_enabled: true
 jdownloader2_enabled: true
 mediathekview_enabled: false
 
+## Monitoring
+glances_enabled: true
+wireshark_enabled: true
+
 ## Home Automation
 homeassistant_enabled: true
 homeassistant_available_externally: true

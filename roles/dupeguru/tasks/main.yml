@@ -6,7 +6,9 @@
         path: "{{ item }}"
         state: directory
       with_items:
-        - "{{ dupeguru_data_directory }}"
+        - "{{ dupeguru_config_directory }}"
+        - "{{ dupeguru_storage_directory }}"
+        - "{{ dupeguru_trash_directory }}"
 
     - name: dupeGuru Docker Container
       community.docker.docker_container:
