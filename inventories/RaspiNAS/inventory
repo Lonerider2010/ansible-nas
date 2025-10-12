@@ -16,3 +16,4 @@
 
 [nas]
 ansible-nas ansible_host=RaspiNAS
+become=yes
