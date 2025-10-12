@@ -15,4 +15,4 @@
 # ansible-nas ansible_connection=local ansible_host=localhost
 
 [nas]
-ansible-nas ansible_host=RaspiNAS become=yes
+ansible-nas ansible_host=RaspiNAS ansible_become=yes
