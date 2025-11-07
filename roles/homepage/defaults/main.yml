@@ -29,9 +29,24 @@ providers:
 
 # Homepage config files - the variables below are formatted to Homepage YAML config files
 homepage_settings_yaml:
-  title: "{{ homepage_title }}"
-  language: "{{ homepage_locale }}"
+  language: de-DE
   showStats: true
+  title: RaspiNAS Homepage
+  layout:
+    Monitoring:
+      style: row
+      columns: 4
+    Content Management:
+    Media Serving:
+    Networking:
+    Smart Home/System Tools:
+    Local/Projects:
+    Open Knowledge:
+    DevOps:
+    Multimedia:
+    Ägyptologie:
+      style: row
+      columns: 4
 
 homepage_services_yaml:
   - Content Management:
@@ -45,7 +60,7 @@ homepage_services_yaml:
             icon: freshrss
     -   Stirling PDF:
             description: PDF Handling
-            href: http://192.168.2.181:32768
+            href: http://192.168.2.181:32771
             icon: stirling-pdf
     -   Swagger UI:
             description: API for Stirling PDF
