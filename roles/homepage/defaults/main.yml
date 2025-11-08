@@ -29,52 +29,71 @@ providers:
 
 # Homepage config files - the variables below are formatted to Homepage YAML config files
 homepage_settings_yaml:
-  language: de-DE
-  showStats: true
-  title: RaspiNAS Homepage
-  layout:
-    Monitoring:
-      style: row
-      columns: 4
-    Content Management:
-    Media Serving:
-    Networking:
-    Smart Home/System Tools:
-    Local/Projects:
-    Open Knowledge:
-    DevOps:
-    Multimedia:
-    Ägyptologie:
-      style: row
-      columns: 4
+---
+language: de-DE
+showStats: true
+title: RaspiNAS Homepage
+layout:
+  Monitoring:
+    style: row
+    columns: 4
+  Content Management:
+  Media Serving:
+  Networking:
+  Smart Home/System Tools:
+  Local/Projects:
+  Open Knowledge:
+  DevOps:
+  Multimedia:
+  Ägyptologie:
+    style: row
+    columns: 4
 
 homepage_services_yaml:
-  - Content Management:
+---
+-   Content Management:
     -   DokuWiki:
             description: Open Source Wiki Software
             href: http://192.168.2.181:8085
             icon: dokuwiki
+            container: dokuwiki
     -   FreshRSS:
             description: RSS feed aggregator
             href: http://192.168.2.181:8089
             icon: freshrss
+            container: freshrss
+            widget:
+                type: freshrss
+                fields: ["unread", "subscriptions"]
+                url: http://raspinas:8089/api/
+                username: admin
+                password: xnJpY,z3S7.Tp=f*TBoz
     -   Stirling PDF:
             description: PDF Handling
-            href: http://192.168.2.181:32771
+            href: http://192.168.2.181:32770
             icon: stirling-pdf
+            container: stirlingpdf
     -   Swagger UI:
             description: API for Stirling PDF
-            href: http://192.168.2.181:32768/swagger-ui/index.html
+            href: http://192.168.2.181:32770/swagger-ui/index.html
             icon: swagger
+            container: stirlingpdf
     -   dupeGuru:
             description: Duplicate files manager
             href: http://192.168.2.181:5801/
             icon: /icons/dupeguru.png
-  - Media Serving:
+            container: dupeguru
+    -   Semaphore:
+            description: Ansible Management
+            href: http://192.168.2.181:5801/
+            icon: semaphore
+            container: semaphore
+-   Media Serving:
     -   Calibre:
             description: Ebook Management
             href: http://192.168.2.181:8093/
             icon: calibre
+            container: calibre
     -   Calibre-server:
             description: Ebook Management (web interface)
             href: http://192.168.2.181:8094/
@@ -83,98 +102,292 @@ homepage_services_yaml:
             description: Ebook Management
             href: http://192.168.2.181:8084/
             icon: calibre-web
+            container: calibreweb
+            widget:
+                type: calibreweb
+                url: http://192.168.2.181:8084/
+                username: admin
+                password: admin123
     -   JDownloader2:
             description: Download Management
             href: http://192.168.2.181:5800/
             icon: jdownloader
+            container: jdownloader2
+            widget:
+                type: jdownloader
+                username: dietmar.schneider@startmail.com
+                password: Loneship_$01
+                client: jdownloader@raspinas
     -   tinyMediaManager:
             description: Media Meta Management
             href: http://192.168.2.181:4000/
             icon: /icons/tinymm.png
-  - Networking:
+            container: tinymm
+-   Networking:
     -   Router:
             description: Speedport Smart 4
             href: https://192.168.2.1/html/login/index.html
             icon: telekom
+            ping: https://192.168.2.1
     -   Printer:
             description: HP OfficeJet Pro 8024e
             href: http://192.168.2.11/
             icon: hp
+            ping: http://192.168.2.11/
     -   Wireshark:
             description: Network monitoring tool
             href: http://192.168.2.181:3000/
             icon: wireshark
-  - Smart Home/System Tools:
+            container: wireshark
+    -   KASM RaspiRON:
+            description: KASM Workspaces on RaspiRON
+            href: https://192.168.2.185:443/
+            icon: kasm
+            ping: http://192.168.2.185
+-   Smart Home/System Tools:
     -   HomeAssistant:
             description: Smart Home Control
             href: http://192.168.2.181:8123/
             icon: home-assistant
+            container: homeassistant
+            widget:
+              type: homeassistant
+              url: http://192.168.2.181:8123/
+              key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxYmFmMzExYTE1NWQ0YTZhYjZhOTdhMGI1Yjg3MjcyZCIsImlhdCI6MTc2MDczNzMxMCwiZXhwIjoyMDc2MDk3MzEwfQ.SiQmtFt6FSUL-sgGYm3ECUTTd-x1AYKkfx8cpcTJkoY
+              custom:
+                - state: switch.total_power
+                - state: switch.total_energy_today
+                  label: energy today
+                - template: "{{ states.switch|selectattr('state','equalto','on')|list|length }}"
+                  label: switches on
+                - state: weather.forecast_home
+                  label: wind speed
+                  value: "{attributes.wind_speed} {attributes.wind_speed_unit}"
     -   Portainer:
             description: Docker container management
             href: http://192.168.2.181:9000/
             icon: portainer
+            container: portainer
+            widget:
+                type: portainer
+                url: http://192.168.2.181:9000/
+                env: 3
+                kubernetes: false # optional, defaults to false
+                key: ptr_6Xu+JznLsTvE8OuJuafGSbn1bG75EEBxyFNpGABDtgE=
     -   Pyrobox:
             description: Web-based file manager
-            href: http://192.168.2.181:6969/
+            href: http://192.168.2.181:7979/
             icon: /icons/pyrobox.png
-    -  Glances:
+    -   Glances:
             description: Cross-platform system monitoring tool
             href: http://192.168.2.181:61208/
             icon: glances
+            container: glances
+    -   PironOMI:
+            description: Dashboard of Claudias Pironman 5 Max
+            href: http://192.168.2.180:34001
+            icon: /icons/sunfounder.png
+            ping: http://192.168.2.180
+    -   RaspiRON:
+            description: Dashboard of Dietmars Pironman 5 Max
+            href: http://192.168.2.185:34001
+            icon: /icons/sunfounder.png
+            ping: http://192.168.2.185
+-   Monitoring:
+    -   System Information:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: info
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   Process List (top 5):
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: process
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   Container List (top 5):
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: containers
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   Network Speed:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: network:eth0
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   CPU Usage:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: cpu
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   CPU Temperature::
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: sensor:cpu_thermal 0
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   Memory Usage:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: memory
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   Systemdisk Speed:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: disk:nvme0n1p7
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
+    -   NASdisk Speed:
+            widget:
+                type: glances
+                url: http://192.168.2.181:61208/
+                version: 4
+                metric: disk:sda
+                diskUnits: bytes
+                refreshInterval: 5000
+                pointsLimit: 15
 
 homepage_widgets_yaml:
+---
 -   search:
         provider: custom
-        url: https://www.startpage.com/do/dsearch?cat=web&language=deutsch&query=
+        showSearchSuggestions: true
+        suggestionUrl: https://www.startpage.com/osuggestions?q=
         target: _blank
-        suggestionUrl: https://www.startpage.com/osuggestions?q= # Optional
-        showSearchSuggestions: true # Optional
+        url: https://www.startpage.com/do/dsearch?cat=web&language=deutsch&query=
 -   greeting:
         text: RaspiNAS
         text_size: xl
 -   resources:
+        label: CPU
         cpu: true
         cputemp: true
+        expanded: true
+-   resources:
+        label: Memory
         memory: true
         refresh: 60000
         units: metric
+        expanded: true
+-   resources:
+        label: Uptime
         uptime: true
+        units: metric
+        expanded: true
+-   resources:
+        label: Systemdisk
+        disk: /system
+        units: metric
+        expanded: true
+-   resources:
+        label: NASdisk
+        disk: /app/config
+        units: metric
+        expanded: true
+-   resources:
+        label: Network
+        network: true
+        units: metric
+        expanded: true
 -   datetime:
-        text_size: md
-        locale: de
         format:
             dateStyle: short
--   datetime:
-        text_size: md
         locale: de
+        text_size: md
+-   datetime:
         format:
             timeStyle: short
+        locale: de
+        text_size: md
+#-   glances:
+#        url: http://192.168.2.181:61208/
+#        #username: user # optional if auth enabled in Glances
+#        #password: pass # optional if auth enabled in Glances
+#        version: 4 # required only if running glances v4 or higher, defaults to 3
+#        cpu: true # optional, enabled by default, disable by setting to false
+#        mem: true # optional, enabled by default, disable by setting to false
+#        cputemp: true # disabled by default
+#        uptime: true # disabled by default
+#        disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
+#        diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
+#        expanded: true # show the expanded view
+#        label: RaspiNAS # optional
+#
 
 homepage_bookmarks_yaml:
--   Local:
+---
+-   Local/Projects:
     -   Schneiders Web:
         -   abbr: SW
             href: https://192.168.2.181:8443/Web/index1.html
             icon: /icons/globe.png
-    -   MCUList:
-        -   abbr: ML
-            href: https://192.168.2.181:8443/Media/MCU/mcu-list.html
-            icon: /icons/captain-marvel-seeklogo.png
+    -   Raspberry Pi Projects:
+        -   abbr: RP
+            href: https://192.168.2.181:8443/IT/repos/gitlab/foundation/raspberry-pi/Projects/README.html
+            icon: raspberry-pi
+    -   RaspiMEDIA:
+        -   abbr: RM
+            href: https://192.168.2.181:8443/IT/repos/gitlab/foundation/raspberry-pi/Projects/RaspiMEDIA/README.html
+            icon: /icons/sc5_amp.png
+    -   RaspiNAS:
+        -   abbr: RN
+            href: https://192.168.2.181:8443/IT/repos/gitlab/foundation/raspberry-pi/Projects/RaspiNAS/README.html
+            icon: /icons/rpi-assemble.png
+    -   RaspiRON:
+        -   abbr: RR
+            href: https://192.168.2.181:8443/IT/repos/gitlab/foundation/raspberry-pi/Projects/RaspiRON/README.html
+            icon: /icons/pironman5max.png
+    -   RackPi:
+        -   addr: RP
+            href: https://192.168.2.181:8443/IT/repos/gitlab/foundation/raspberry-pi/Projects/RackPi/README.html
+            icon: /icons/Serverschrank-9HE.png
 -   Open Knowledge:
     -   Wikipedia:
         -   abbr: WP
             href: https://de.wikipedia.org/wiki/
             icon: wikipedia
+    -   Wikipedia API:
+        -   abbr: WPA
+            href: https://wikipedia-api.readthedocs.io/en/latest/
+            icon: readthedocs
     -   OpenStreetMap:
         -   abbr: OSM
-            href: https://www.openstreetmap.org/#map=17/49.461980/11.099377
+            href: https://www.osmap.de/#17/49.46198/11.09984
             icon: openstreetmap
     -   OpenWeather:
         -   abbr: OWM
             href: https://openweathermap.org/find?q=N%C3%BCrnberg
             icon: /icons/openweathermap.png
     -   OpenFoodFacts:
-        -   abbr: OFF
+        -   abbr: false
             href: https://de.openfoodfacts.org/
             icon: /icons/openfoodfacts.png
     -   Open Access Network:
@@ -189,35 +402,47 @@ homepage_bookmarks_yaml:
         -   abbr: ORE
             href: https://open-research-europe.ec.europa.eu/
             icon: /icons/openresearcheurope.png
+    -   Internet Archive Text:
+        -   abbr: IA
+            href: https://archive.org/details/texts
+            icon: /icons/internetarchive_w.png
+    -   Deutsche National Bibliothek:
+        -   abbr: DNB
+            href: https://www.dnb.de/DE/Home/home_node.html
+            icon: /icons/dnb.png
+    -   Deutsche Digitale Bibliothek:
+        -   abbr: DDB
+            href: https://www.deutsche-digitale-bibliothek.de/
+            icon: /icons/ddb_i.png
 -   DevOps:
     -   Gitlab:
         -   abbr: GL
-            href: https://gitlab.com/
+            href: https://gitlab.com/dashboard
             icon: gitlab
     -   Github:
         -   abbr: GH
-            href: https://github.com/
+            href: https://github.com/issues/created?q=is%3Aissue%20archived%3Afalse%20author%3A%40me%20sort%3Aupdated-desc
             icon: github-light
     -   DockerHub:
         -   abbr: DH
-            href: https://hub.docker.com/
+            href: https://hub.docker.com/search
             icon: docker
     -   Raspberry Pi:
         -   abbr: PI
-            href: https://www.raspberrypi.com/
+            href: https://www.raspberrypi.com/documentation/
             icon: raspberry-pi
     -   Ansible-NAS:
         -   abbr: AN
-            href: https://ansible-nas.io/
+            href: https://ansible-nas.io/docs/
             icon: /icons/ansiblenas.png
     -   Homepage:
         -   abbr: HO
-            href: https://gethomepage.dev/
+            href: https://gethomepage.dev/configs/
             icon: homepage
-    -   Stack Overflow:
-        -   abbr: SO
-            href: https://stackoverflow.com/
-            icon: mdi-stack-overflow
+    -   linuxserver.io:
+        -   abbr: ls
+            href: https://www.linuxserver.io/
+            icon: /icons/linuxserverio.png
     -   Stirling PDF - Processing API:
         -   abbr: SP
             href: https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/latest
@@ -226,7 +451,15 @@ homepage_bookmarks_yaml:
         -   abbr: PO
             href: https://github.com/procount/pinn
             icon: /icons/pinn-os-2.png
--   Entertainment:
+    -   W3Schools:
+        -   abbr: W3S
+            href: https://pathfinder.w3schools.com/
+            icon: /icons/w3schools.png
+    -   regex101:
+        -   abbr: RE
+            href: https://regex101.com/account/mine
+            icon: /icons/regex101.png
+-   Multimedia:
     -   MediathekViewWeb:
         -   abbr: MV
             href: https://mediathekviewweb.de/
@@ -239,8 +472,97 @@ homepage_bookmarks_yaml:
         -   abbr: IV
             href: https://inv.nadeko.net/
             icon: invidious
+    -   The Movie DB:
+        -   abbr: TMDB
+            href: https://www.themoviedb.org/u/Lonerider2010
+            icon: tmdb
+    -   The Movie DB API:
+        -   abbr: mdap
+            href: https://developer.themoviedb.org/docs/getting-started
+            icon: tmdb
+    -   The TV DB:
+        -   abbr: tvdb
+            href: https://www.thetvdb.com/dashboard
+            icon: tvdb
+    -   The TV DB API:
+        -   abbr: tdap
+            href: https://thetvdb.github.io/v4-api/
+            icon: swagger
+    -   tinyMediaManager Docs:
+        -   abbr: tmmd
+            href: https://www.tinymediamanager.org/docs/
+            icon: /icons/tinymm.png
+    -   tmm HTTP API:
+        -   abbr: tmma
+            href: https://www.tinymediamanager.org/docs/http-api
+            icon: /icons/tinymm.png
+    -   Mein Arte:
+        -   abbr: arte
+            href: https://www.arte.tv/de/profile/myvideos/favorite/
+            icon: /icons/artetv.png
+    -   Mein ZDF:
+        -   abbr: zdf
+            href: https://www.zdf.de/mein-zdf
+            icon: /icons/zdflogo.png
+    -   MCUList:
+        -   abbr: ML
+            href: https://192.168.2.181:8443/Media/MCU/mcu-list.html
+            icon: /icons/captain-marvel-seeklogo.png
+    -   MusicBrainz:
+        -   abbr: MB
+            href: https://musicbrainz.org/user/Lonerider2010/collections
+            icon: musicbrainz
     -   Welche Bachkantate?:
         -   abbr: WB
             href: https://whichbachcantata.be/
             icon: /icons/bach.png
+-   Ägyptologie:
+    -   Portal:Ägyptologie:
+        -   abbr: PÄ
+            href: https://de.wikipedia.org/wiki/Portal:%C3%84gyptologie
+            icon: /icons/nofretete.png
+    -   HEIDI:
+        -   abbr: HEI
+            href: https://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?fsubmit=Suchen&f[teil]=sgay&f[fac_sgay]=1&spell=0&ddstat=fac_fach&query=fac_ma%3AOnline-Ressource&f[fac_fach]=63
+            icon: /icons/heidi.png
+    -   Propylaeum:
+        -   abbr: PL
+            href: https://books.ub.uni-heidelberg.de/propylaeum/search/results
+            icon: /icons/propylaeum.png
+    -   Digitale Literatur zur Ägyptologie (2009):
+        -   abbr: DL
+            href: https://web.archive.org/web/20081229042206/http://www.ub.uni-heidelberg.de/helios/fachinfo/fachref/aegypt/online.htm
+            icon: /icons/heidi.png
+    -   Digital Egypt for Universities (2003):
+        -   abbr: DE
+            href: https://www.ucl.ac.uk/museums-static/digitalegypt//Welcome.html
+            icon: /icons/deulogosmall.png
+    -   Uni Wien - Ägyptologie Forschung:
+        -   abbr: UW
+            href: https://egyptology.univie.ac.at/forschung/projekte/
+            icon: /icons/uniwien.png
+    -   Digital Giza:
+        -   abbr: DG
+            href: http://giza.fas.harvard.edu/
+            icon: /icons/giza.png
+    -   Edfu-Projekt NAWG:
+        -   abbr: NAWG
+            href: https://adw-goe.de/forschung/abgeschlossene-forschungsprojekte/akademienprogramm/edfu-projekt/
+            icon: /icons/nadwg.png
+    -   Theban Mapping Project:
+        -   abbr: TMP
+            href: https://thebanmappingproject.com/
+            icon: /icons/TMP.png
+    -   Uni Tübingen - Ägyptologie Projekte:
+        -   abbr: UTP
+            href: https://uni-tuebingen.de/fakultaeten/philosophische-fakultaet/fachbereiche/altertums-und-kunstwissenschaften/institut-fuer-die-kulturen-des-alten-orients-ianes/forschung/aegyptologie/projekte/
+            icon: /icons/Uni_Tuebingen.png
+    -   SAW - Science in Ancient Egypt:
+        -   abbr: SAE
+            href: https://sae.saw-leipzig.de/de
+            icon: /icons/sae-saw-logo.png
+    -   Papyrus Portal:
+        -   abbr: PP
+            href: https://papyri.uni-leipzig.de/content/start.xml
+            icon: /icons/papyrus-portal.ico
 homepage_allowed_hosts: "*"
