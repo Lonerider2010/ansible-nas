@@ -171,7 +171,7 @@ homepage_services_yaml:
                 url: http://192.168.2.181:9000/
                 env: 3
                 kubernetes: false # optional, defaults to false
-                key: ptr_6Xu+JznLsTvE8OuJuafGSbn1bG75EEBxyFNpGABDtgE=
+                key: ptr_djB+SnixC91yL6OM/WJR3TmJ0fikgfN8SLjZH0/Bd1c=
     -   Pyrobox:
             description: Web-based file manager
             href: http://192.168.2.181:7979/
