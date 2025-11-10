@@ -73,7 +73,7 @@ homepage_services_yaml:
             container: stirlingpdf
     -   Swagger UI:
             description: API for Stirling PDF
-            href: http://192.168.2.181:32770/swagger-ui/index.html
+            href: http://192.168.2.181:32768/swagger-ui/index.html
             icon: swagger
             container: stirlingpdf
     -   dupeGuru:
