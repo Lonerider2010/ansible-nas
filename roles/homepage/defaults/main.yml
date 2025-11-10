@@ -374,6 +374,10 @@ homepage_bookmarks_yaml:
         -   abbr: WPA
             href: https://wikipedia-api.readthedocs.io/en/latest/
             icon: readthedocs
+    -   Wikibooks:
+        -   abbr: WB
+            href: https://de.wikibooks.org/wiki/Hauptseite
+            icon: /icons/wikibooks.png
     -   OpenStreetMap:
         -   abbr: OSM
             href: https://www.osmap.de/#17/49.46198/11.09984
