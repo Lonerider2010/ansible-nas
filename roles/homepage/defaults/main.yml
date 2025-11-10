@@ -68,7 +68,7 @@ homepage_services_yaml:
                 password: xnJpY,z3S7.Tp=f*TBoz
     -   Stirling PDF:
             description: PDF Handling
-            href: http://192.168.2.181:32770
+            href: http://192.168.2.181:32768
             icon: stirling-pdf
             container: stirlingpdf
     -   Swagger UI:
