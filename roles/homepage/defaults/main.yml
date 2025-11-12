@@ -565,4 +565,16 @@ homepage_bookmarks_yaml:
         -   abbr: PP
             href: https://papyri.uni-leipzig.de/content/start.xml
             icon: /icons/papyrus-portal.ico
+    -   AWOL - The Ancient World Online (OBO):
+        -   abbr: AWOL
+            href: https://ancientworldonline.blogspot.com/2017/05/newly-online-11-volumes-of-orbis.html
+            icon: blogger
+    -   IBAES:
+        -   abbr: IBAES
+            href: https://www.ibaes.de/ibaes.html
+            icon: /icons/ibaes.png
+    -   Egyptologists Electronic Forum (EEF):
+        -   abbr: EEF
+            href: https://www.egyptologyforum.org/
+            icon: /icons/globe.png
 homepage_allowed_hosts: "*"
