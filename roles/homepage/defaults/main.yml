@@ -577,4 +577,8 @@ homepage_bookmarks_yaml:
         -   abbr: EEF
             href: https://www.egyptologyforum.org/
             icon: /icons/globe.png
+    -   Oriental Institute Publications (OIP) | Institute for the Study of Ancient Cultures:
+        -   abbr: OIP
+            href: https://isac.uchicago.edu/research/publications/oriental-institute-publications-oip
+            icon: /icons/uchicago-isac.png
 homepage_allowed_hosts: "*"
