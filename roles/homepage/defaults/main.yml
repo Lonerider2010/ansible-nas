@@ -581,4 +581,8 @@ homepage_bookmarks_yaml:
         -   abbr: OIP
             href: https://isac.uchicago.edu/research/publications/oriental-institute-publications-oip
             icon: /icons/uchicago-isac.png
+    -   Egyptology Books and Articles in PDF online:
+        -   abbr: EBA
+            href: http://egyptologyresources.x10host.com/er/bibliography/bibliography_data.html
+            icon: /icons/globe.png
 homepage_allowed_hosts: "*"
