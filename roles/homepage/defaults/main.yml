@@ -460,10 +460,10 @@ homepage_bookmarks_yaml:
             href: https://regex101.com/account/mine
             icon: /icons/regex101.png
 -   Multimedia:
-    -   MediathekViewWeb:
-        -   abbr: MV
-            href: https://mediathekviewweb.de/
-            icon: mediathekview
+    -   MediathekSuche:
+        -   abbr: MS
+            href: https://mediatheksuche.de/
+            icon: /icons/mediatheksuche.png
     -   MyJDownloader:
         -   abbr: MJD
             href: https://my.jdownloader.org/index.html?deviceId=cee387b06b9b85a53ba4562bf660240e#webinterface:downloads
