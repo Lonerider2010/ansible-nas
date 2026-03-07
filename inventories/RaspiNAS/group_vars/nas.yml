@@ -25,7 +25,10 @@ calibre_enabled: true
 calibre_cwa_enabled: true
 calibreweb_enabled: true
 jdownloader2_enabled: true
-mediathekview_enabled: false
+lychee_enabled: true
+mediathekview_enabled: true
+pyload_enabled: true
+vlc_enabled: tru
 
 ## Monitoring
 glances_enabled: true

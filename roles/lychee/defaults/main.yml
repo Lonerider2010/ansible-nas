@@ -1,0 +1,26 @@
+---
+lychee_enabled: "true"
+lychee_available_externally: "false"
+
+# uid / gid
+lychee_user_id: "0"
+lychee_group_id: "0"
+
+# directories
+lychee_data_directory: "{{ docker_home }}/lychee"
+lychee_download_directory: "/mnt/Volume1/local/Photos"
+
+# network
+lychee_port: "80"
+lychee_hostname: "lychee"
+
+# env
+lychee_password: ""
+lychee_cli_args: ""
+lychee_security_opts: "seccomp=unconfined" # For why this is here, see https://github.com/linuxserver/docker-lychee/issues/102
+
+# specs
+lychee_memory: 1g
+
+# docker
+lychee_container_name: lychee

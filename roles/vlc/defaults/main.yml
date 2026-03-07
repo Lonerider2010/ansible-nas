@@ -1,0 +1,26 @@
+---
+jdownloader2_enabled: "true"
+jdownloader2_available_externally: "false"
+
+# uid / gid
+jdownloader2_user_id: "0"
+jdownloader2_group_id: "0"
+
+# directories
+jdownloader2_data_directory: "{{ docker_home }}/jdownloader2"
+jdownloader2_download_directory: "/mnt/Volume1/local/Download/Production/"
+
+# network
+jdownloader2_port: "5800"
+jdownloader2_hostname: "jdownloader2"
+
+# env
+jdownloader2_password: ""
+jdownloader2_cli_args: ""
+jdownloader2_security_opts: "seccomp=unconfined" # For why this is here, see https://github.com/linuxserver/docker-jdownloader2/issues/102
+
+# specs
+jdownloader2_memory: 1g
+
+# docker
+jdownloader2_container_name: jdownloader2

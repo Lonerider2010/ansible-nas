@@ -1,0 +1,40 @@
+---
+- name: Start jdownloader2
+  block:
+    - name: Create jdownloader2 Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0755
+      with_items:
+        - "{{ jdownloader2_data_directory }}/data"
+
+    - name: jdownloader2 Docker Container
+      community.docker.docker_container:
+        name: "{{ jdownloader2_container_name }}"
+        image: jlesage/jdownloader-2
+        # pull: missing
+        state: started
+        volumes:
+          - "{{ jdownloader2_data_directory }}/data:/config:rw"
+          - "{{ jdownloader2_download_directory }}:/output:rw"
+        env:
+          TZ: "{{ ansible_nas_timezone }}"
+          PUID: "{{ jdownloader2_user_id }}"
+          PGID: "{{ jdownloader2_group_id }}"
+          PASSWORD: "{{ jdownloader2_password }}"
+          CLI_ARGS: "{{ jdownloader2_cli_args }}"
+        ports:
+          - "{{ jdownloader2_port }}:5800"
+        security_opts: "{{ jdownloader2_security_opts }}"
+        restart_policy: unless-stopped
+        memory: "{{ jdownloader2_memory }}"
+  when: jdownloader2_enabled is true
+
+- name: Stop jdownloader2
+  block:
+    - name: Stop jdownloader2
+      community.docker.docker_container:
+        name: "{{ jdownloader2_container_name }}"
+        state: absent
+  when: jdownloader2_enabled is false

@@ -1,0 +1,40 @@
+---
+- name: Start lychee
+  block:
+    - name: Create lychee Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0755
+      with_items:
+        - "{{ lychee_data_directory }}/pictures"
+
+    - name: lychee Docker Container
+      community.docker.docker_container:
+        name: "{{ lychee_container_name }}"
+        image: lscr.io/linuxserver/lychee:latest
+        # pull: missing
+        state: started
+        volumes:
+          - "{{ lychee_data_directory }}/data:/config:rw"
+          - "{{ lychee_download_directory }}:/output:rw"
+        env:
+          TZ: "{{ ansible_nas_timezone }}"
+          PUID: "{{ lychee_user_id }}"
+          PGID: "{{ lychee_group_id }}"
+          PASSWORD: "{{ lychee_password }}"
+          CLI_ARGS: "{{ lychee_cli_args }}"
+        ports:
+          - "{{ lychee_port }}:80"
+        security_opts: "{{ lychee_security_opts }}"
+        restart_policy: unless-stopped
+        memory: "{{ lychee_memory }}"
+  when: lychee_enabled is true
+
+- name: Stop lychee
+  block:
+    - name: Stop lychee
+      community.docker.docker_container:
+        name: "{{ lychee_container_name }}"
+        state: absent
+  when: lychee_enabled is false

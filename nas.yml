@@ -237,6 +237,10 @@
       tags:
         - loki
 
+    - role: lychee
+      tags:
+        - lychee
+
     - role: mealie
       tags:
         - mealie
@@ -456,6 +460,10 @@
     - role: virtual_desktop
       tags:
         - virtual_desktop
+
+    - role: vlc
+      tags:
+        - vlc
 
     - role: wallabag
       tags:
