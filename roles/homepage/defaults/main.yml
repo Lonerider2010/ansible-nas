@@ -114,7 +114,7 @@ homepage_services_yaml:
             widget:
                 type: jdownloader
                 username: dietmar.schneider@startmail.com
-                password: Loneship_$01
+                password: Loneship_$02
                 client: jdownloader@raspinas
     -   tinyMediaManager:
             description: Media Meta Management
