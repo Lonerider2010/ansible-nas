@@ -1,5 +1,5 @@
 ---
-mealie_enabled: false
+mealie_enabled: true
 mealie_available_externally: false
 
 # directories
