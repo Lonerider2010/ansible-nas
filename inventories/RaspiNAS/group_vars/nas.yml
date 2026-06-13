@@ -28,7 +28,7 @@ jdownloader2_enabled: true
 lychee_enabled: true
 mediathekview_enabled: true
 pyload_enabled: true
-vlc_enabled: tru
+vlc_enabled: true
 
 ## Monitoring
 glances_enabled: true
@@ -43,3 +43,6 @@ mosquitto_enabled: true
 portainer_enabled: true
 dupeguru_enabled: true
 duplicati_enabled: true
+
+## Other
+mealie_enabled: true
